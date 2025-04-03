@@ -16,24 +16,32 @@ datasource db {
 model User {
   id       String     @id @unique
   email    String     @unique
-  websites Websites[]
 }
 
 model Websites {
   id           String         @id @default(uuid())
   userId       String
-  user         User           @relation(fields: [userId], references: [id])
-  name         String         @unique
-  url          String         @unique
-  websiteTicks WebsiteTicks[]
+  url          String         
+  websiteTicks WebsiteTicks[] 
   Disabled     Boolean        @default(false)
+  @@unique([url, userId])
 }
 
 model Validator {
-  id           String         @id @default(uuid())
-  publicKey    String         @unique
-  location     String
-  websiteTicks WebsiteTicks[]
+  id            String         @id @default(uuid())
+  publicKey     String         @unique
+  solanaBalance String
+  withdrawls    Withdrawls[]
+  location      String
+  websiteTicks  WebsiteTicks[]
+}
+
+model Withdrawls {
+  id          String    @id @default(uuid())
+  validatorId String
+  validator   Validator @relation(fields: [validatorId], references: [id])
+  amount      String
+  timestamp   DateTime  @default(now())
 }
 
 enum WebsiteStatus {

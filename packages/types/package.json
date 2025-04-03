@@ -1,0 +1,17 @@
+{
+  "name": "@repo/types",
+  "version": "1.0.0",
+  "main": "./src/index.d.ts",
+  "types": "./src/index.d.ts",
+  "exports": {
+    ".": "./src/index.d.ts",
+    "./api": "./src/api.d.ts",
+    "./db": "./src/db.d.ts"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
